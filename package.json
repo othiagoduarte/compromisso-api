@@ -1,0 +1,30 @@
+{
+  "name": "compromissos-api",
+  "version": "1.0.0",
+  "description": "Teste de autenticação",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.0",
+    "express-load": "^1.1.15",
+    "express-session": "^1.15.1",
+    "jwt-simple": "^0.5.1",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.8.5",
+    "mongoose-findorcreate": "^1.0.1",
+    "passport": "^0.2.2",
+    "passport-jwt": "^2.2.1"
+
+  },
+  "devDependencies": {
+        "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "author": "Thiago Duarte",
+  "license": "ISC"
+}

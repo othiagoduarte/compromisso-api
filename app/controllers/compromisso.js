@@ -9,24 +9,43 @@ module.exports = function(app)
 	controller.add = add;  
 
 	function get (req, res) {	
-
-
+		Compromisso.find().exec()
+		.then(function(compromissos){
+			res.json(compromissos);
+		},
+		function(erro){
+      	    res.status(500).json({retorno:erro});
+        });
 	};
  	
 	function getAll (req, res) {
-
 		Compromisso.find().exec()
-		.then(function(contatos){
+		.then(function(compromissos){
 			res.json(compromissos);
-		});
+		},
+		function(erro){
+      	    res.status(500).json({retorno:erro});
+        });
 	};
 	
 	function save(req, res){
-
+		Compromisso.find().exec()
+		.then(function(compromissos){
+			res.json(compromissos);
+		},
+		function(erro){
+      	    res.status(500).json({retorno:erro});
+        });
 	};
 
 	function add(req, res){
-
+		Compromisso.find().exec()
+		.then(function(compromissos){
+			res.json(compromissos);
+		},
+		function(erro){
+      	    res.status(500).json({retorno:erro});
+        });
 	};
 	
 	return controller;	

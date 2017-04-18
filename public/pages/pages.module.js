@@ -1,27 +1,37 @@
 (function () {
     'use strict';
-angular.module('Compromissos.pages', [
-                                        'Compromissos.pages.header',
-                                        'Compromissos.pages.footer',
-                                        'Compromissos.pages.home',
-                                        'Compromissos.pages.compromissos'
-                                    ]
-            )
-.run(function ($window) {
-    console.log("Compromissos.pages run!")
-})
+angular.module('Compromissos.pages',modulos())
 .config(routeConfig)
+    
+    function modulos(){
+        
+        var mod = [];
+        mod.push('Compromissos.pages.header');
+        mod.push('Compromissos.pages.footer');
+        mod.push('Compromissos.pages.home');
+        mod.push('Compromissos.pages.compromissos'); 
 
-function routeConfig ($routeProvider) {
-    $routeProvider
-    .when('/home', {
-        templateUrl: '/pages/home/home.html',
-        controller: 'homeCtrl'
-    })
-    .when('/', {
-        templateUrl: '/pages/compromissos/compromissos.html',
-        controller: 'compromissosCtrl'
-    })
-}
+        return mod;
+    }
 
+    function routeConfig ($routeProvider, $locationProvider) {
+
+        $routeProvider
+        .when('/', {
+            templateUrl: '/pages/home/home.html',
+            controller: 'homeCtrl'
+        })
+        .when('/compromissos', {
+            templateUrl: '/pages/compromissos/compromissos.html',
+            controller: 'compromissosCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
 })();

@@ -7,7 +7,7 @@
   function header(){
         return {
           restrict: 'E',
-          template: '<header>header</header>',
+          templateUrl: 'pages/header/header.html',
       }  
   }
 

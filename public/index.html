@@ -1,19 +1,20 @@
 <html>  
     <head>
-        <title>Icompromisso</title>
-            <link rel="shortcut icon" href="https://image.freepik.com/icones-gratis/extensao-de-arquivo-excel_318-40499.png" type="image/type here"/>
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link href="/bowerModules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-            <link href="/bowerModules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="https://image.freepik.com/icones-gratis/extensao-de-arquivo-excel_318-40499.png" type="image/type here"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/bowerModules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/bowerModules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <title>compromisso</title>
     </head>
     <body ng-app="Compromissos">
         <ngheader></ngheader>
         <div id="main">
-            <div ng-view>Conteúdo</div>
+            <div class="view-animate-container">
+                <div ng-view class="view-animate"></div>
+            </div>
         </div>
         <ngfooter></ngfooter>
     </body>
-
     <script type="text/javascript" src="/bowerModules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bowerModules/angular/angular.min.js"></script>
     <script type="text/javascript" src="/bowerModules/angular-route/angular-route.min.js"></script>
@@ -24,5 +25,9 @@
     <script type="text/javascript" src="/pages/footer/footer.directive.js"></script>
     <script type="text/javascript" src="/pages/header/header.module.js"></script>
     <script type="text/javascript" src="/pages/header/header.directive.js"></script>
+    <script type="text/javascript" src="/pages/home/home.module.js"></script>
+    <script type="text/javascript" src="/pages/home/homeCtrl.js"></script>
+    <script type="text/javascript" src="/pages/compromissos/compromissos.module.js"></script>
+    <script type="text/javascript" src="/pages/compromissos/compromissosCtrl.js"></script>
     
 </html>

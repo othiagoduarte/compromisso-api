@@ -11,6 +11,12 @@ module.exports = function()
 {
     var app = express();
     
+    app.use(express.static('./public'));
+	app.use(express.static(__dirname + '/public'));
+
+	app.set('view engine','ejs');
+	app.set('views','./app/views');
+    
     app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
     app.set('auth', auth);

@@ -1,12 +1,10 @@
 (function () {
 
-angular.module('Compromissos', ['ngRoute',
-                                'Compromissos.pages'
-                                ])
-
-.run(function ($window) {
-    console.log("Compromissos run!")
-})
-        
+angular.module('Compromissos', [ 
+                                 'ngRoute',
+                                 'ui.bootstrap',
+                                 'Compromissos.pages',
+                                 'Compromissos.services'
+                                ])  
 
 })();

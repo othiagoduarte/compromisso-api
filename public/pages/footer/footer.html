@@ -3,6 +3,11 @@
         var trigger = $('.hamburger');
         var overlay = $('.overlay');
         var isClosed = false;
+        var itemMenu = $("a",".sidebar-nav");
+
+        itemMenu.click(function(){
+            trigger.click();
+        });
 
         trigger.click(function () {
             hamburger_cross();      

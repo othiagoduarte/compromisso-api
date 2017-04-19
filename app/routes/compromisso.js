@@ -4,9 +4,13 @@ module.exports = function(app)
 
 	app.route('/api/compromisso')
 	.get(controller.getAll)
+	
 	.post(controller.add)
 	.put(controller.save);
 	
-	app.route('/api/compromisso/:id')
+	app.route('/api/compromisso/count')
+	.get(controller.count)
+
+	app.route('/api/compromisso/:page')
 	.get(controller.get);
 };

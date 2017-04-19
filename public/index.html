@@ -10,10 +10,23 @@
         <title>compromisso</title>
     </head>
     <body ng-app="Compromissos">
+        <div id="wrapper">
+        <div class="overlay"></div>
         <ngheader></ngheader>
-        <div id="main">
-             <div ng-view></div>
+                 <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                <div class="row">
+					<div ng-view></div>
+                </div>
+            </div>
         </div>
+        <!-- /#page-content-wrapper -->
         <ngfooter></ngfooter>
     </body>
     <script type="text/javascript" src="/bowerModules/jquery/dist/jquery.min.js"></script>
@@ -33,5 +46,4 @@
     <script type="text/javascript" src="/pages/home/homeCtrl.js"></script>
     <script type="text/javascript" src="/pages/compromissos/compromissos.module.js"></script>
     <script type="text/javascript" src="/pages/compromissos/compromissosCtrl.js"></script>
-    
 </html>

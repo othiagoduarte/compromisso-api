@@ -2,7 +2,7 @@
   "name": "compromissos-api",
   "version": "1.0.0",
   "description": "Teste de autenticação",
-  "main": "server.js",
+  "main": "app.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
@@ -24,6 +24,7 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
+    "start": "node app.js",
     "test": "jasmine-node spec"
   },
   "author": "Thiago Duarte",

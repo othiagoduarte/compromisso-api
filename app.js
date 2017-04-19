@@ -1,4 +1,3 @@
-
 var http = require('http');
 var app = require('./config/server')();
 require('./config/database.js')();

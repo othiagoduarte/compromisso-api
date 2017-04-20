@@ -4,16 +4,19 @@
     .controller('compromissosCtrl', compromissosCtrl);
 
     function compromissosCtrl($scope,$apiService){
-        var dbCompromisso = $apiService.compromisso; 
-        var _itensPagina = 10;
         $scope.buscarCompromissos = buscarCompromissos;
         $scope.data = {};
-
+        
+        var dbCompromisso = $apiService.compromisso; 
+        var _itensPagina = 10;
+        
         paginacaoItens();        
         buscarCompromissos();
 
         function buscarCompromissos(pagina){
-            dbCompromisso.Get(pagina)
+            var _page = pagina | 1;
+
+            dbCompromisso.Get(_page)
             .then(function(compromissos){
                 $scope.data.compromissos = compromissos.data;
             });
@@ -30,5 +33,4 @@
             })
         }
     }
-
 })();

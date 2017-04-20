@@ -4,18 +4,14 @@
     .controller('compromissosCtrl', compromissosCtrl);
 
     function compromissosCtrl($scope,$apiService,$modalService){
-        $scope.buscarCompromissos = buscarCompromissos;
-        $scope.excluir = excluir; 
-        $scope.data = {};
-        
-        $scope.getDatetime = new Date(Date.now()).setHours(0,0,0,0);
         
         var dbCompromisso = $apiService.compromisso; 
         var _itensPagina = 10;
         
-        paginacaoItens();        
-        buscarCompromissos();
-        
+        $scope.data = {};
+        $scope.buscarCompromissos = buscarCompromissos;
+        $scope.excluir = excluir; 
+                
         function getHoje(){
             return new Date();
         }
@@ -51,9 +47,10 @@
                 });                    
     
             }else{
-                $modalService.informacao({  titulo:"Informação"
-                                            ,mensagem:"Não é possível excluir compromissos do dia atual!"
-                                          });
+                var retorno = {};
+                retorno.titulo = "Informação";
+                retorno.mensagem = "Não é possível excluir compromissos agendados para a data atual!";
+                $modalService.informacao(retorno);
             }
         }
 
@@ -61,12 +58,22 @@
 
             dbCompromisso.Delete(pDados.compromisso)
             .then(function(response){
-                buscarCompromissos(1);
+               atualizarDados();
                 fecharModal();
             })
             .catch(function(response){
-                console.log(response);
+                var retorno = {};
+                retorno.titulo = "Informação";
+                retorno.mensagem = "Ocorreram erros ao excluir o compromisso!";
+                $modalService.informacao(retorno);
             });
         }
+        
+        function atualizarDados(){
+            paginacaoItens();        
+            buscarCompromissos(1);
+        }
+        
+        atualizarDados();
     }
 })();

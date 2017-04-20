@@ -6,14 +6,14 @@
 
     function homeCtrl($scope,$apiService,$uibModal,$modalService){
         
-        var dbCompromisso = $apiService.compromisso; 
-        var _itensPagina = 10;
         $scope.data = {};
         $scope.buscarCompromissos = buscarCompromissos;
         $scope.incluirCompromisso = salvarCompromisso;
         $scope.excluir = excluir;
         $scope.editar = editar;
 
+        var dbCompromisso = $apiService.compromisso; 
+        var _itensPagina = 10;
 
         function getHoje(){
             return new Date();
@@ -30,9 +30,10 @@
                 });                    
     
             }else{
-                $modalService.informacao({  titulo:"Informação"
-                                            ,mensagem:"Não é possível excluir compromissos do dia atual!"
-                                          });
+                var retorno = {};
+                retorno.titulo = "Informação";
+                retorno.mensagem = "Não é possível excluir compromissos agendados para a data atual!";
+                $modalService.informacao(retorno);
             }
         }
 
@@ -40,7 +41,8 @@
 
             dbCompromisso.Delete(pDados.compromisso)
             .then(function(response){
-                buscarCompromissos(1);
+                
+                carregarDados();
                 fecharModal();
             })
             .catch(function(response){
@@ -53,9 +55,10 @@
             if(Date.parse(compromisso.data) > getHoje()){
                salvarCompromisso(compromisso);
             }else{
-                $modalService.informacao({  titulo:"Informação"
-                                            ,mensagem:"Só é possivel editar compromissos futuros!"
-                                          });
+                var retorno = {};
+                retorno.titulo = "Informação";
+                retorno.mensagem = "Só é possivel editar compromissos futuros!";
+                $modalService.informacao(retorno);
             }
         }
                         
@@ -102,34 +105,44 @@
                     
                     $apiService.compromisso.Save($scope.compromisso)
                     .then(function(response){
-                        $modalService.informacao({  titulo:"Informação"
-                                                    ,mensagem:"Sucesso ao salvar um compromisso!"
-                                                });
+                        
+                        var retorno = {};
+                        retorno.titulo = "Informação";
+                        retorno.mensagem = "Sucesso ao salvar um compromisso!";
+                        $modalService.informacao(retorno);
+
                         carregarDados();
                         fecharModal();
 
                     })
                     .catch(function(response){
-                        $modalService.informacao({  titulo:"Atenção"
-                                                    ,mensagem:response.data.retorno
-                                                });
+
+                        var retorno = {};
+                        retorno.titulo = "Atenção!";
+                        retorno.mensagem = response.data.retorno;
+                        $modalService.informacao(retorno);
                     });
                 
                 }else{
 
                     $apiService.compromisso.Add($scope.compromisso)
                     .then(function(response){
-                        $modalService.informacao({  titulo:"Informação"
-                                                    ,mensagem:"Sucesso ao incluir um compromisso!"
-                                                });
+                        
+                        var retorno = {};
+                        retorno.titulo = "Informação!";
+                        retorno.mensagem ="Sucesso ao incluir um compromisso!";
+                        $modalService.informacao(retorno);
+
                         carregarDados();
                         fecharModal();
 
                     })
                     .catch(function(response){
-                        $modalService.informacao({  titulo:"Atenção"
-                                                    ,mensagem:response.data.retorno
-                                                });
+                        var retorno = {};
+                        retorno.titulo = "Informação!";
+                        retorno.mensagem =response.data.retorno;
+                        $modalService.informacao(retorno);
+
                     });
                 }  
             }        

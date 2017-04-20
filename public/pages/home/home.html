@@ -19,7 +19,8 @@
         <th>Data</th>
         <th>Hora</th>
         <th>Criação</th>
-        <th>Ação</th> 
+        <th>Editar</th>
+        <th>Excluir</th> 
       </tr>
     </thead>
     <tbody>
@@ -30,7 +31,16 @@
         <td>{{compromisso.data | date : 'dd/MM/yyyy'}}</td>
         <td>{{compromisso.data | date : 'HH:mm:ss'}}</td>
         <td>{{compromisso.criacao | date : 'dd/MM/yyyy'}}</td>
-        <td>X</td>
+        <td>
+          <div>
+            <a ng-click="editar(compromisso)">Editar</a>
+          </div>
+        </td>
+        <td>
+          <div>
+            <a ng-click="excluir(compromisso)">Excluir</a>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

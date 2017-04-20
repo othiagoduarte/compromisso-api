@@ -22,6 +22,12 @@ angular.module('Compromissos.services', [])
             Add : function(pData){
                     return $http.post(pUrlApi,{compromisso:pData});            
             },
+            Save : function(pData){
+                    return $http.put(pUrlApi,{compromisso:pData});            
+            },
+            Delete : function(pData){
+                    return $http.post(pUrlApi + "/remove/", {compromisso:pData});            
+            },
             Proximos : function(pId){
                     return $http.get(pUrlApi + "/Proximos/" + pId);
             },

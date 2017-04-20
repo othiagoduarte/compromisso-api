@@ -8,11 +8,57 @@
         
         var dbCompromisso = $apiService.compromisso; 
         var _itensPagina = 10;
-        
-        $scope.buscarCompromissos = buscarCompromissos;
-        $scope.incluirCompromisso = incluirCompromisso;
         $scope.data = {};
-                
+        $scope.buscarCompromissos = buscarCompromissos;
+        $scope.incluirCompromisso = salvarCompromisso;
+        $scope.excluir = excluir;
+        $scope.editar = editar;
+
+
+        function getHoje(){
+            return new Date();
+        }
+
+        function excluir(compromisso){
+            if(Date.parse(compromisso.data) != getHoje() ){
+
+                $modalService.executar({
+                    func: excluirCompromissoCtrl,
+                    data:{ compromisso , retorno:{mensagem:"Deseja excluir o compromisso?",titulo:"Atenção"}},
+                    size:'sm',
+                    template:'/pages/componentes/modal/processar.html'
+                });                    
+    
+            }else{
+                $modalService.informacao({  titulo:"Informação"
+                                            ,mensagem:"Não é possível excluir compromissos do dia atual!"
+                                          });
+            }
+        }
+
+        function excluirCompromissoCtrl(pDados,fecharModal,$modalService){
+
+            dbCompromisso.Delete(pDados.compromisso)
+            .then(function(response){
+                buscarCompromissos(1);
+                fecharModal();
+            })
+            .catch(function(response){
+                console.log(response);
+                fecharModal();
+            });
+        }
+
+        function editar(compromisso){
+            if(Date.parse(compromisso.data) > getHoje()){
+               salvarCompromisso(compromisso);
+            }else{
+                $modalService.informacao({  titulo:"Informação"
+                                            ,mensagem:"Só é possivel editar compromissos futuros!"
+                                          });
+            }
+        }
+                        
         function buscarCompromissos(pagina){
             dbCompromisso.Proximos(pagina)
             .then(function(compromissos){
@@ -34,39 +80,59 @@
             });
         }
 
-        function incluirCompromisso(){
+        function salvarCompromisso(pCompromisso){
             
             $uibModal.open({
                 animation: true,
                 templateUrl: "/pages/componentes/modal/compromisso.html",
                 size: 'lg',
-                controller: incluirCompromissoCtrl,
+                controller: salvarCompromissoCtrl,
                 resolve: {
-                    compromisso: {},
+                    compromisso: pCompromisso,
                 }
             });
         }
 
-        function incluirCompromissoCtrl($scope,compromisso,$apiService){
+        function salvarCompromissoCtrl($scope,compromisso,$apiService){
             $scope.compromisso = compromisso;
- 
+
             $scope.salvar = function(fecharModal){
                 
-                $apiService.compromisso.Add($scope.compromisso)
-                .then(function(response){
-                    $modalService.informacao({  titulo:"Informação"
-                                                ,mensagem:"Sucesso ao incluir um compromisso!"
-                                            });
-                    carregarDados();
-                    fecharModal();
+                if($scope.compromisso._id){
+                    
+                    $apiService.compromisso.Save($scope.compromisso)
+                    .then(function(response){
+                        $modalService.informacao({  titulo:"Informação"
+                                                    ,mensagem:"Sucesso ao salvar um compromisso!"
+                                                });
+                        carregarDados();
+                        fecharModal();
 
-                })
-                .catch(function(response){
-                    $modalService.informacao({  titulo:"Atenção"
-                                                ,mensagem:response.data.retorno
-                                            });
-                });
-            }          
+                    })
+                    .catch(function(response){
+                        $modalService.informacao({  titulo:"Atenção"
+                                                    ,mensagem:response.data.retorno
+                                                });
+                    });
+                
+                }else{
+
+                    $apiService.compromisso.Add($scope.compromisso)
+                    .then(function(response){
+                        $modalService.informacao({  titulo:"Informação"
+                                                    ,mensagem:"Sucesso ao incluir um compromisso!"
+                                                });
+                        carregarDados();
+                        fecharModal();
+
+                    })
+                    .catch(function(response){
+                        $modalService.informacao({  titulo:"Atenção"
+                                                    ,mensagem:response.data.retorno
+                                                });
+                    });
+                }  
+            }        
         }
          
         function carregarDados(){

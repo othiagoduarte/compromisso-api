@@ -300,3 +300,6 @@ html { height: 100%;}
     background-color: #2e6da4;
     border-color: #2e6da4;
 }
+table a{
+cursor: pointer;
+}

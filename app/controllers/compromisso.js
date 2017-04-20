@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 module.exports = function(app)
 {
 	var Compromisso = app.models.compromisso;		
@@ -11,7 +12,8 @@ module.exports = function(app)
 	controller.count = count;
 	controller.proximos = proximos;
 	controller.proximosCount = proximosCount;
-		 
+	controller.remove = remove;
+
 	function get (req, res) {	
 
 		var _limite = 10;
@@ -50,7 +52,20 @@ module.exports = function(app)
       	    res.status(500).json({retorno:erro});
         });
 	};
-
+	
+	function remove(req, res){
+		var _compromisso = req.body.compromisso;
+		var query = {"_id":_compromisso._id};
+		
+		Compromisso.findOneAndRemove(query)
+		.then(function(compromissos){
+			res.json(compromissos);
+		},
+		function(erro){
+      	    res.status(500).json({retorno:erro});
+        });
+	}
+	
 	function count (req, res) {
 
 		Compromisso.count()
@@ -88,8 +103,15 @@ module.exports = function(app)
 
 	function save(req, res, next){
 		var _compromisso = req.body.compromisso;
+		var query = {"_id":_compromisso._id};
 
-		res.json({retorno:"Salvo com sucesso!"});
+		Compromisso.findOneAndUpdate(query,_compromisso)
+		.then(function(compromissos) {
+			res.status(200).json(compromissos._doc);
+		},
+		function(erro) {
+			res.status(500).json({retorno:erro});
+		});	
 	};
 
 	function add(req, res){
@@ -122,11 +144,11 @@ module.exports = function(app)
 		var _dataInicial = new Date(_data.setTime(_data.getTime() - ( 30 * 60000)));
 		var _dataFinal = new Date(_data.setTime(_data.getTime() + ( 30 * 60000)));
 		
+		
 		Compromisso.find({
-			data : {
-			'$gte': _dataInicial,
-			'$lte': _dataFinal
-		}})
+			_id :{ '$ne': _compromisso._id },
+			data : { '$gte': _dataInicial ,'$lte': _dataFinal},
+		})
 		.then(function(compromissos){
 			if(compromissos.length > 0){
 				res.status(501).json({retorno:"O intervalo de 30 minutos deve ser respeitado entre os compromissos!"});

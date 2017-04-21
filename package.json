@@ -8,8 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "jasmine-node spec",
-    "postinstall": "bower install",
-    "preinstall": "npm install"
+    "postinstall": "bower install"
   },
   "main": "app.js",
   "dependencies": {

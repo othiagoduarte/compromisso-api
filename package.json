@@ -2,6 +2,14 @@
   "name": "compromissos-api",
   "version": "1.0.0",
   "description": "Teste de autenticação",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jasmine-node spec",
+    "postinstall": "bower install"
+  },
   "main": "app.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -22,10 +30,6 @@
   "devDependencies": {
     "jasmine-node": "^1.14.5",
     "nodemon": "^1.11.0"
-  },
-  "scripts": {
-    "start": "node app.js",
-    "test": "jasmine-node spec"
   },
   "author": "Thiago Duarte",
   "license": "ISC"

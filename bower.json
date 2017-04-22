@@ -1,0 +1,31 @@
+{
+  "name": "compromissos-api",
+  "description": "Lista de compromissos",
+  "main": "server.js",
+  "authors": [
+    "Thiago Duarte"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "API",
+    "RESTFULL",
+    "NODE.JS",
+    "MEAN"
+  ],
+  "homepage": "https://github.com/othiagoduarte/compromisso-api",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/bowerModules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.4",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.6.4",
+    "angular-bootstrap": "^2.5.0"
+  }
+}

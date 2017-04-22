@@ -10,7 +10,7 @@ module.exports = function() {
 
     passport.use( new Strategy(params, function(payload, done) {
               
-        Users.findOne({_id:payload.id})
+    Users.findOne({_id:payload.id})
         .then(function(users){
             return done(null, {id: users.id});
         },function(erro){

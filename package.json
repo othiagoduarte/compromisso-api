@@ -1,20 +1,17 @@
 {
-  "name": "compromissos-api",
-  "version": "1.0.0",
-  "description": "Teste de autenticação",
+  "name": "Web",
+  "version": "0.0.1",
+  "description": "",
   "engines": {
     "node": "6.10.2"
   },
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "jasmine-node spec",
-    "postinstall": "bower install"
+    "start": "node index.js"
   },
-  "main": "app.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
-    "bower": "^1.8.0",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.6",
     "express": "^4.15.0",
@@ -24,14 +21,22 @@
     "method-override": "^2.3.7",
     "mongoose": "^4.8.5",
     "mongoose-findorcreate": "^1.0.1",
+    "multer": "^1.3.0",
+    "nodemon": "^1.11.0",
     "passport": "^0.2.2",
+    "passport-google": "^0.3.0",
     "passport-jwt": "^2.2.1",
-    "request": "^2.81.0"
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
   },
-  "devDependencies": {
-    "jasmine-node": "^1.14.5",
-    "nodemon": "^1.11.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/othiagoduarte"
   },
-  "author": "Thiago Duarte",
-  "license": "ISC"
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }

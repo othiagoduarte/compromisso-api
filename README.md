@@ -1,3 +1,2 @@
-# compromisso-api
 # Aplicação WEB - MEAN
-# https://compromisso-api.herokuapp.com/
+Disponível em :https://compromisso-api.herokuapp.com/
